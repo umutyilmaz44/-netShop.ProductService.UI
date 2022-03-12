@@ -1,0 +1,35 @@
+
+/* You can add global styles to this file, and also import other style files */
+body {
+  color: #566787;
+  background: #f5f5f5;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 13px;
+}
+
+:host ::ng-deep .modal-dialog-scrollable {
+  height: calc(100% - 1rem);
+}
+:host ::ng-deep .modal-dialog-scrollable .modal-content {
+  max-height: 100%;
+  overflow: hidden;
+}
+:host ::ng-deep .modal-dialog-scrollable .modal-body {
+  overflow-y: auto;
+}
+
+:host ::ng-deep .modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - 1rem);
+}
+
+:host ::ng-deep input.ng-dirty.ng-touched.ng-invalid{
+  border: 1px #ec250d solid;
+}
+
+:host ::ng-deep .invalid-form-control-label{
+  color:#ec250d;
+  font-style: italic;
+  font-size: small;
+}

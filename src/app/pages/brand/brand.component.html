@@ -1,0 +1,77 @@
+<div class="content">
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="card card-restfull-height mb-0">
+        <div class="card-header">
+          <h6 class="title d-inline" style="font-size: large">BRAND LIST</h6>
+          <p class="card-category d-inline" style="font-style: italic">
+            Brand Management
+          </p>
+          <div ngbDropdown>
+            <button type="button" class="btn btn-link btn-icon" data-toggle="dropdown" ngbDropdownToggle>
+              <i class="tim-icons icon-settings-gear-63"> </i>
+            </button>
+            <div aria-labelledby="dropdownMenuLink" class="dropdown-menu-right" ngbDropdownMenu>
+              <a href="javascript:void(0)" ngbDropdownItem (click)="addNewBrand()"
+                data-bs-target="#brandDetailModal" data-bs-toggle="modal">
+                <i class="fas fa-plus"></i> <span>Add Brand</span>
+              </a>
+            </div>
+          </div>
+          <div style="max-width: 200px; min-width: 150px; float: right; margin-top: -10px;">
+            <input class="form-control string optional search-input" placeholder="Search" type="text" name="searchText"
+              id="searchText" [ngModel]="searchKey" (ngModelChange)="searchByKey($event)" />
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-full-width table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <ng-container *ngFor="let columnName of columnNames">
+                    <th scope="col" class="pointer" *ngIf="columnList[columnName]" (click)="setSortField(columnName)">
+                      <div style="display: flex; justify-content: space-between">
+                        <span>{{ columnName }}</span>
+                        <span class="px-2" *ngIf="sortTempField == columnName">
+                          <i class="fas {{ searchFilter == 'ASC' ? 'fa-sort-alpha-down' : 'fa-sort-alpha-up'}}" style="color: orange"></i>
+                        </span>
+                        <span class="px-2" *ngIf="sortTempField !== columnName && sortFieldList[columnName]">
+                          <i class="fas fa-sort"></i>
+                        </span>
+                      </div>
+                    </th>
+                  </ng-container>
+                  <th class="text-center">#</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of dataList; let i = index">
+                  <td *ngIf="columnList['BrandName']">
+                    {{ item.brandName ? item.brandName : "-" }}
+                  </td>
+                  <td *ngIf="columnList['Description']">
+                    {{ item.description ? item.description : "-" }}
+                  </td>
+                  <td class="text-center">
+                    <button class="btn btn-link" type="button" placement="left" ngbTooltip="Edit Brand" container="body"
+                      data-bs-target="#brandDetailModal" data-bs-toggle="modal" (click)="editBrand(item)">
+                      <i class="tim-icons icon-pencil"> </i>
+                    </button>
+                    <button class="btn btn-link" type="button" placement="left" ngbTooltip="Delete Brand"
+                      container="body" (click)="deleteConfirm(item)">
+                      <i class="tim-icons icon-trash-simple"> </i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <app-paginator [pageModel]="pageModel" (pageChangeEvent)="getBrandList()">
+            </app-paginator>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-brand-detail #brandDetailComponent (reloadRequest) = "reloadRequest()"></app-brand-detail>

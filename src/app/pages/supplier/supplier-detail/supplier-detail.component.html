@@ -1,0 +1,81 @@
+<div class="modal modal-black fade" id="supplierDetailModal" data-bs-backdrop="static" tabindex="-1"
+  aria-labelledby="supplierDetailModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title">Supplier Information</h5>
+          <button type="button" #supplierDetailModalClose class="close" data-bs-dismiss="modal" aria-label="Close">
+              <i class="tim-icons icon-simple-remove"></i>
+          </button>
+      </div>
+
+        <div class="modal-body">
+          <form [formGroup]="supplierForm" (ngSubmit)="save()" id="formSupplier">
+            <div class="form-group has-label">
+                <label for="supplierName" class="col-form-label">Supplier Name</label>
+                <input type="text" class="form-control" id="supplierName" formControlName="supplierName">
+                <div class="invalid-form-control-label" *ngIf="!frm['supplierName'].valid && (frm['supplierName'].dirty || frm['supplierName'].touched)">
+                  <div [hidden]="!frm['supplierName'].errors?.['required']">
+                    Supplier Name is required
+                  </div>
+                  <div [hidden]="!frm['supplierName'].errors?.['minlength']">
+                    Min Length is 2
+                  </div>
+                </div>
+            </div>
+            <div class="form-group has-label">
+                <label for="website" class="col-form-label">Website</label>
+                <input type="url" class="form-control" id="website" formControlName="website">
+                <div class="invalid-form-control-label" *ngIf="!frm['website'].valid && (frm['website'].dirty || frm['website'].touched)">
+                  <div [hidden]="!frm['website'].errors?.['pattern']">
+                    Website must be valid format
+                  </div>
+                </div>
+            </div>
+            <div class="form-group has-label">
+                <label for="email" class="col-form-label">Email</label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+                <div class="invalid-form-control-label" *ngIf="!frm['email'].valid && (frm['email'].dirty || frm['email'].touched)">
+                  <div [hidden]="!frm['email'].errors?.['required']">
+                    Email is required
+                  </div>
+                  <div [hidden]="!frm['email'].errors?.['email']">
+                    Email must be valid format
+                  </div>
+                </div>
+            </div>
+            <div class="form-group has-label">
+                <label for="phone" class="col-form-label">Phone</label>
+                <input type="tel" class="form-control" id="phone" formControlName="phone">
+                <div class="invalid-form-control-label" *ngIf="!frm['phone'].valid && (frm['phone'].dirty || frm['phone'].touched)">
+                  <div [hidden]="!frm['phone'].errors?.['required']">
+                    Phone is required
+                  </div>
+                  <div [hidden]="!frm['phone'].errors?.['pattern'] && !frm['phone'].errors?.['minlength']">
+                    Phone must be valid format
+                  </div>
+                </div>
+            </div>
+            <div class="form-group has-label">
+                <label for="fax" class="col-form-label">Fax</label>
+                <input type="tel" class="form-control" id="fax" formControlName="fax">
+                <div class="invalid-form-control-label" *ngIf="!frm['fax'].valid && (frm['fax'].dirty || frm['fax'].touched)">
+                  <div [hidden]="!frm['fax'].errors?.['pattern'] && !frm['fax'].errors?.['minlength']">
+                    Fax must be valid format
+                  </div>
+                </div>
+            </div>
+            <div class="form-group has-label">
+                <label for="description" class="col-form-label">Description</label>
+                <textarea class="form-control" id="description" formControlName="description" ></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-info" type="submit" [disabled]="supplierForm.invalid" form="formSupplier">Save</button>
+            <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
+        </div>
+
+    </div>
+  </div>
+</div>

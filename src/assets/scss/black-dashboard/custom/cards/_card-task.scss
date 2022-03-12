@@ -1,0 +1,78 @@
+.card-tasks {
+  height: 473px;
+
+  .table-full-width {
+    max-height: 410px;
+    position: relative;
+  }
+
+  .card-header {
+    .title {
+      margin-right: 20px;
+      font-weight: $font-weight-normal;
+    }
+
+    .dropdown {
+      float: right;
+      color: darken($white, 20%);
+    }
+  }
+
+  .card-body {
+    i {
+      color: $dark-gray;
+      font-size: 1.4em;
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+}
+
+
+.card-restfull-height {
+  height: calc(100vh - 130px);
+
+  .table-full-width {
+    position: relative;
+
+    .table tbody {
+      height: calc(100vh - 290px);
+      border: 2px white;
+    }
+
+    table tbody {
+      display: block;
+      overflow-y: scroll;
+      height: calc(100vh - 290px);
+    }
+
+    table thead, table tbody tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+  }
+
+  .card-header {
+    .title {
+      margin-right: 20px;
+      font-weight: $font-weight-normal;
+    }
+
+    .dropdown {
+      float: right;
+      color: darken($white, 20%);
+    }
+  }
+
+  .card-body {
+    i {
+      color: $dark-gray;
+      font-size: 1.4em;
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+}

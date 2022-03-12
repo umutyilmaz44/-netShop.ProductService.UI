@@ -1,0 +1,27 @@
+  <!--     Fonts and icons -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800"
+    rel="stylesheet"
+  />
+  <link
+    href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"
+    rel="stylesheet"
+  />
+
+<div class="wrapper">
+  <div class=" navbar-minimize-fixed d-inline" style="opacity: 1;">
+    <button class=" minimize-sidebar btn btn-link btn-just-icon" placement="right" (click)="sidebarToggle()">
+      <i class=" tim-icons icon-align-center visible-on-sidebar-regular"></i>
+      <i class=" tim-icons icon-bullet-list-67 visible-on-sidebar-mini"></i>
+    </button>
+  </div>
+  <app-sidebar ></app-sidebar>
+  <div class="main-panel">
+    <app-navbar #navbar></app-navbar>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </div>
+</div>
+
+<app-loading *ngIf="loadingService.isActive"></app-loading>
+

@@ -1,0 +1,94 @@
+<div class="modal modal-black fade" id="productDetailModal" data-bs-backdrop="static" tabindex="-1"
+  aria-labelledby="productDetailModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Product Information</h5>
+        <button type="button" #productDetailModalClose class="close" data-bs-dismiss="modal" aria-label="Close">
+            <i class="tim-icons icon-simple-remove"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="productForm" (ngSubmit)="save()" id="formProduct">
+          <div class="form-group has-label">
+            <select class="form-control selectpicker " formControlName="supplierId"
+              [ngClass]="{'btn-info': frm['supplierId'].valid, 'btn-danger':!frm['supplierId'].valid && (frm['supplierId'].dirty || frm['supplierId'].touched)}">
+              <option [ngValue]="null" disabled>Choose Supplier</option>
+              <option *ngFor="let supplier of supplierList" [value]="supplier.id">
+                {{ supplier.supplierName }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group has-label">
+            <select class="form-control selectpicker " formControlName="brandId" (change)="brand_OnChange($event)"
+              [ngClass]="{'btn-info': frm['brandId'].valid, 'btn-danger':!frm['brandId'].valid && (frm['brandId'].dirty || frm['brandId'].touched)}">
+              <option [value]=null disabled>Choose Brand</option>
+              <option *ngFor="let brand of brandList" [value]="brand.id">
+                {{brand.brandName}}
+              </option>
+            </select>
+          </div>
+          <div class="form-group has-label">
+            <select class="form-control selectpicker " formControlName="brandModelId"
+              [ngClass]="{'btn-info': frm['brandModelId'].valid, 'btn-danger':!frm['brandModelId'].valid && (frm['brandModelId'].dirty || frm['brandModelId'].touched)}">
+              <option [ngValue]="null" disabled>Choose Brand Model</option>
+              <option *ngFor="let brandModel of brandModelList" [value]="brandModel.id">
+                {{ brandModel.modelName }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group has-label">
+            <label for="productCode" class="col-form-label">Product Code</label>
+            <input type="text" class="form-control" id="productCode" formControlName="productCode">
+            <div class="invalid-form-control-label" *ngIf="!frm['productCode'].valid && (frm['productCode'].dirty || frm['productCode'].touched)">
+              <div [hidden]="!frm['productCode'].errors?.['required']">
+                Product Code is required
+              </div>
+              <div [hidden]="!frm['productCode'].errors?.['minlength']">
+                Min Length is 2
+              </div>
+            </div>
+          </div>
+          <div class="form-group has-label">
+              <label for="productName" class="col-form-label">Product Name</label>
+              <input type="text" class="form-control" id="productName" formControlName="productName">
+              <div class="invalid-form-control-label" *ngIf="!frm['productName'].valid && (frm['productName'].dirty || frm['productName'].touched)">
+                <div [hidden]="!frm['productName'].errors?.['required']">
+                  Product Name is required
+                </div>
+                <div [hidden]="!frm['productName'].errors?.['minlength']">
+                  Min Length is 2
+                </div>
+              </div>
+          </div>
+          <div class="form-group has-label">
+            <label for="price" class="col-form-label">Price</label>
+            <input type="number" class="form-control" id="price" formControlName="price">
+            <div class="invalid-form-control-label" *ngIf="!frm['price'].valid && (frm['price'].dirty || frm['price'].touched)">
+              <div [hidden]="!frm['price'].errors?.['required']">
+                Price is required
+              </div>
+            </div>
+          </div>
+          <div class="form-group has-label">
+            <label for="quantity" class="col-form-label">Quantity</label>
+            <input type="number" class="form-control" id="quantity" formControlName="quantity">
+            <div class="invalid-form-control-label" *ngIf="!frm['quantity'].valid && (frm['quantity'].dirty || frm['quantity'].touched)">
+              <div [hidden]="!frm['quantity'].errors?.['required']">
+                Quantity is required
+              </div>
+            </div>
+          </div>
+          <div class="form-group has-label">
+              <label for="description" class="col-form-label">Description</label>
+              <textarea class="form-control" id="description" formControlName="description" ></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+          <button type="submit" class="btn btn-info" type="submit" [disabled]="productForm.invalid" form="formProduct">Save</button>
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

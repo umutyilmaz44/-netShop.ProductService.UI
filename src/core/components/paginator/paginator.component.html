@@ -1,0 +1,30 @@
+<div class="clearfix">
+  <div class="hint-text">
+    Showing <b>{{ toValue }}</b> to <b>{{ fromValue }}</b> of <b>{{ (_pageModel && _pageModel.totalCount ? _pageModel.totalCount : 0) }}</b> entries</div>
+    <ul class="pagination">
+        <li class="page-item pointer {{_pageModel.currentPage==1 ? 'disabled':''}}">
+          <a *ngIf="_pageModel.totalPages && _pageModel.totalPages>0" (click)="changePage(_pageModel.currentPage-1)"
+            class="page-link"  aria-label="Previous">
+            <span aria-hidden="true">Previous</span>
+          </a>
+        </li>
+        <li class="page-item pointer {{_pageModel.currentPage==i+1? 'active':''}}"
+          *ngFor="let page of [].constructor(_pageModel ? _pageModel.totalPages :0); let i = index;">
+          <a *ngIf="_pageModel && _pageModel.totalPages &&
+                  (_pageModel.totalPages < _pageModel.pageScale ||
+                    (_pageModel.totalPages > _pageModel.pageScale &&
+                      i+1>=_pageModel.currentPage-6 && i+1<_pageModel.currentPage+6
+                    )
+                  );"
+            class="page-link" (click)="changePage(i+1)">
+          {{i + 1}}
+        </a>
+        </li>
+        <li class="page-item pointer {{_pageModel.currentPage==_pageModel.totalPages ? 'disabled':''}}">
+          <a *ngIf="_pageModel.totalPages && _pageModel.totalPages>0" class="page-link" aria-label="Next"
+            (click)="changePage(_pageModel.currentPage+1)">
+            <span aria-hidden="true">Next</span>
+          </a>
+        </li>
+    </ul>
+</div>
