@@ -14,21 +14,21 @@ export const SecuredLayoutRoutes: Routes = [
   {
     path: "products",
     component: ProductComponent,
-    // canActivate:[AuthGuardService]
+    canActivate:[AuthGuardService]
   },
   {
     path: "brands",
     component: BrandComponent,
-    // canActivate:[AuthGuardService]
+    canActivate:[AuthGuardService]
   },
   {
     path: "models",
     component: BrandModelComponent,
-    // canActivate:[AuthGuardService]
+    canActivate:[AuthGuardService]
   },
   {
     path: "suppliers",
     component: SupplierComponent,
-    // canActivate:[AuthGuardService]
+    canActivate:[AuthGuardService]
   }
 ];
